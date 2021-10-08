@@ -14,13 +14,24 @@ public class Main {
         displayWelcomeSign();
         String addAnotherPolynomial = "n";
         do {
-            Polynomial firstPolynomial = new Polynomial(askForStringWithinLength("Please enter your first polynomial: ", 100));
-            Polynomial secondPolynomial = new Polynomial(askForStringWithinLength("Please enter the second polynomial: ", 100));
+            // Get the first polynomial
+            System.out.println("Please enter your first polynomial: ");
+            Polynomial firstPolynomial = new Polynomial(keyboard.nextLine());
+
+            // Get the second polynomial
+            System.out.println("Please enter the second polynomial: ");
+            Polynomial secondPolynomial = new Polynomial(keyboard.nextLine());
+
+            // Add the polynomials together and output the result
             Polynomial sumOfPolynomials = firstPolynomial.addPolynomial(secondPolynomial);
             System.out.println("\nThe sum is: \n" + sumOfPolynomials + "\n");
+
+            // Ask if the user wants to add more polynomials
             addAnotherPolynomial = askForStringWithinLength("Would you like to add two more polynomials? ", 100);
-            System.out.println();
+            System.out.println(); // For formatting purposes only
         } while (addAnotherPolynomial.equals("y"));
+
+        // Displays the exit message
         System.out.println("Thank you for using the Polynomial Addition Program.");
     }
 

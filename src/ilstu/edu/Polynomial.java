@@ -76,11 +76,14 @@ public class Polynomial {
         Node current = termsHead;
         String output = "";
         while (current != null) {
-            if (current.termData.getCoefficient() != 0)
-                output += current.termData + " + ";
+            if (current == termsHead && current.termData.getCoefficient() != 0)
+                output += current.termData;
+            else if (current.termData.getCoefficient() > 0)
+                output += " + " + current.termData;
+            else if (current.termData.getCoefficient() < 0)
+                output += " " + current.termData;
             current = current.next;
         }
-        output = output.strip().substring(0, output.length() - 2);
         return output;
     }
 

@@ -23,6 +23,11 @@ public class Term {
     }
 
     /** Public Methods */
+    /**
+     * Adds two terms together
+     * @param secondTerm The second term
+     * @return The term that is the summation of the two terms or null if the exponents of the terms do not match
+     */
     public Term addTerm(Term secondTerm) {
         if (this.exponent != secondTerm.getExponent())
             return null;
