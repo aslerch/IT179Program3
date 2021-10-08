@@ -27,20 +27,8 @@ public class Term {
         if (this.exponent != secondTerm.getExponent())
             return null;
         else { // if sum can be expressed as a single term
-            Term termAfterSummation = null;
-            if (this.coefficient < 0 && secondTerm.coefficient < 0) {
-
-            }
-            else if (this.coefficient < 0 && secondTerm.coefficient >=0) {
-
-            }
-            else if (this.coefficient >= 0 && secondTerm.coefficient < 0) {
-
-            }
-            else if (this.coefficient >= 0 && secondTerm.coefficient >= 0) {
-                int sumOfCoefficients = this.coefficient + secondTerm.coefficient;
-                termAfterSummation = new Term(sumOfCoefficients, this.exponent);
-            }
+            int sumOfCoefficients = this.coefficient + secondTerm.coefficient;
+            Term termAfterSummation = new Term(sumOfCoefficients, this.exponent);
             return termAfterSummation;
         }
     }

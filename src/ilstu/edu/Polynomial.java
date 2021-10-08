@@ -23,8 +23,8 @@ public class Polynomial {
         String[] polynomialBreakdown = polynomial.split(" ");
         int coefficient = 0;
         int exponent = 0;
+        String signOfTerm = "";
         for (int i = 0; i < polynomialBreakdown.length; i++) {
-            String signOfTerm = "";
             if (polynomialBreakdown[i].equals("+") || polynomialBreakdown[i].equals("-")) {
                 if (polynomialBreakdown[i].equals("-"))
                     signOfTerm = "-";
@@ -32,16 +32,22 @@ public class Polynomial {
             else { // element does not contain a "+" nor "-"
                 if (polynomialBreakdown[i].contains("^")) {
                     String [] parsedExponentTerm = polynomialBreakdown[i].split("x\\^");
-                    coefficient = Integer.parseInt(signOfTerm + parsedExponentTerm[0]);
+                    coefficient = Integer.parseInt(parsedExponentTerm[0]);
+                    if (signOfTerm.equals("-"))
+                        coefficient = coefficient * -1;
                     exponent = Integer.parseInt(parsedExponentTerm[1]);
                 }
                 else if ( polynomialBreakdown[i].contains("x")) {
                     String [] parsedLinearTerm = polynomialBreakdown[i].split("x");
                     coefficient = Integer.parseInt(parsedLinearTerm[0]);
+                    if (signOfTerm.equals("-"))
+                        coefficient = coefficient * -1;
                     exponent = 1;
                 }
                 else {
-                    coefficient = Integer.parseInt(signOfTerm + polynomialBreakdown[i]);
+                    coefficient = Integer.parseInt(polynomialBreakdown[i]);
+                    if (signOfTerm.equals("-"))
+                        coefficient = coefficient * -1;
                     exponent = 0;
                 }
             }
@@ -69,11 +75,11 @@ public class Polynomial {
         Node current = termsHead;
         String output = "";
         while (current != null) {
-            output += current.termData;
-            if (current.next != null && current.termData.getCoefficient() >= 0)
-                output += " + ";
+            if (current.termData.getCoefficient() != 0)
+                output += current.termData + " + ";
             current = current.next;
         }
+        output = output.substring(0, output.length() - 2);
         return output;
     }
 
