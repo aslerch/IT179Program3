@@ -54,6 +54,7 @@ public class Polynomial {
             if (i % 2 == 0) {
                 Term newTerm = new Term(coefficient, exponent);
                 addTermToPolynomial(newTerm);
+                signOfTerm = "";
             }
         }
     }
@@ -79,7 +80,7 @@ public class Polynomial {
                 output += current.termData + " + ";
             current = current.next;
         }
-        output = output.substring(0, output.length() - 2);
+        output = output.strip().substring(0, output.length() - 2);
         return output;
     }
 
